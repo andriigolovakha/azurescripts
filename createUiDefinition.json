@@ -1,0 +1,53 @@
+{
+	"handler": "Microsoft.Compute.MultiVm",
+	"version": "0.0.1-preview",
+	"parameters": {
+		"basics": [
+		],
+		"steps": [{
+			"name": "DiscoveryConfiguration",
+			"label": "Discovery Configuration",
+			"subLabel": {
+				"preValidation": "Configure Discovery service settings",
+				"postValidation": "Done"
+			},
+			"bladeTitle": "Discovery service settings",
+			"elements": [
+				{
+				"name": "discoveryEndpoint",
+				"type": "Microsoft.Common.TextBox",
+				"label": "Discovery service URL",
+				"toolTip": "Discovery service URL",
+				"defaultValue": "http://localhost:8083/discovery.svc",
+				"constraints": {
+					"required": true
+					}
+				},
+				{
+					"name": "oauthClientId",
+					"type": "Microsoft.Common.TextBox",
+					"label": "OAuth Client Id",
+					"toolTip": "OAuth Client Id",
+					"defaultValue": "cduser",
+					"constraints": {
+						"required": true
+					}
+				}, 
+				{
+					"name": "oauthClientSecret",
+					"type": "Microsoft.Common.PasswordBox",
+					"label": "OAuth Client Secret",
+					"toolTip": "OAuth Client Secret",
+					"constraints": {
+						"required": true
+				}
+			}]
+		}],
+		"outputs": {
+			"discoveryEndpoint": "[steps('DiscoveryConfiguration').discoveryEndpoint]",
+			"oauthClientId": "[steps('DiscoveryConfiguration').oauthClientId]",
+			"oauthClientSecret": "[steps('DiscoveryConfiguration').oauthClientSecret]",
+			"subscription": "[basics('subscription')]"
+		}
+	}
+}
